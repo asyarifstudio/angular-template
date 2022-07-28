@@ -1,0 +1,22 @@
+name: Deploy to Firebase Hosting on PR
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  # set the FIREBASE_SERVICE_ACCOUNT in the Repository Secret
+  # set the projectID
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT}}'
+          projectId: project-id
+          channelId: live
