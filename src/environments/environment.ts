@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  firebase:{
+  //get this configuration in application setting in firebase. click Add App for web app
+  firebase:{ 
     projectId: '',
     appId: '',
     storageBucket: '',
