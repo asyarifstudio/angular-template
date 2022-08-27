@@ -18,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
      //check if if request to server
      if(request.url.includes(environment.server)){
       return from(this.auth.getToken()).pipe(
-        switchMap((token:string)=>{
+        switchMap((token:string | undefined)=>{
           if(token){
             const headers = request.headers.set('Authorization',token);
             const req = request.clone({

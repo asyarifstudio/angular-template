@@ -21,7 +21,7 @@ export class AuthService {
   get
   $account():Observable<Account | undefined>{
     return this.fireAuth.authState.pipe(
-      tap((user:firebase.User)=>{
+      tap((user:firebase.User | null)=>{
         this.firebaseUser = user;
       }),
       mergeMap(async (user:firebase.User | null) => {
